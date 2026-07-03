@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Indie+Flower&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.45);
+}
+
+/* Soft pulse glow animations for status and active items */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.03);
+  }
+}
+
+.animate-glow {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-panel-heavy {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Global Sleek Interface Card Themes */
+.sleek-card {
+  border-radius: 1.5rem !important; /* rounded-3xl */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-dark .sleek-card {
+  background-color: rgba(255, 255, 255, 0.05) !important; /* bg-white/5 */
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;  /* border-white/10 */
+  box-shadow: 0 20px 25px -5px rgba(2, 6, 23, 0.3), 0 8px 10px -6px rgba(2, 6, 23, 0.3) !important; /* shadow-xl */
+  color: #e2e8f0 !important; /* text-slate-200 */
+}
+
+.theme-light .sleek-card {
+  background-color: rgba(255, 255, 255, 0.82) !important; /* bg-white/80 */
+  border: 1px solid rgba(226, 232, 240, 0.6) !important;  /* border-slate-200/60 */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02), 0 1px 2px -1px rgba(0, 0, 0, 0.02) !important; /* shadow-xs */
+  color: #1e293b !important; /* text-slate-800 */
+}
+
+.theme-cyberpunk .sleek-card {
+  background-color: rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid rgba(168, 85, 247, 0.25) !important;
+  box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.1) !important;
+  color: #22d3ee !important;
+}
+
+.theme-sakura .sleek-card {
+  background-color: rgba(255, 255, 255, 0.65) !important;
+  border: 1px solid rgba(251, 207, 232, 0.6) !important;
+  box-shadow: 0 4px 6px -1px rgba(251, 207, 232, 0.15) !important;
+  color: #5c1d2e !important;
+}
+
+/* Global Sleek Interface Interactive Sub-Cards */
+.sleek-subcard {
+  border-radius: 1rem !important; /* rounded-2xl */
+  transition: all 0.2s ease-in-out;
+}
+
+.theme-dark .sleek-subcard {
+  background-color: rgba(255, 255, 255, 0.04) !important; /* bg-white/5 */
+  border: 1px solid rgba(255, 255, 255, 0.05) !important; /* border-white/5 */
+  color: #e2e8f0 !important;
+}
+.theme-dark .sleek-subcard:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important; /* hover:bg-white/10 */
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.theme-light .sleek-subcard {
+  background-color: rgba(241, 245, 249, 0.65) !important; /* bg-slate-100/65 */
+  border: 1px solid rgba(226, 232, 240, 0.5) !important; /* border-slate-200/50 */
+}
+.theme-light .sleek-subcard:hover {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+.theme-cyberpunk .sleek-subcard {
+  background-color: rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(168, 85, 247, 0.15) !important;
+  color: #22d3ee !important;
+}
+.theme-cyberpunk .sleek-subcard:hover {
+  background-color: rgba(168, 85, 247, 0.1) !important;
+  border-color: rgba(168, 85, 247, 0.35) !important;
+}
+
+.theme-sakura .sleek-subcard {
+  background-color: rgba(255, 240, 243, 0.5) !important;
+  border: 1px solid rgba(251, 207, 232, 0.4) !important;
+  color: #5c1d2e !important;
+}
+.theme-sakura .sleek-subcard:hover {
+  background-color: rgba(255, 240, 243, 0.85) !important;
+  border-color: rgba(251, 207, 232, 0.7) !important;
+}
+
+/* Note Editor Font Family overrides */
+.font-note-sans {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+}
+.font-note-serif {
+  font-family: "Playfair Display", Georgia, serif !important;
+}
+.font-note-mono {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace !important;
+}
+.font-note-dyslexic {
+  font-family: "Comic Sans MS", "Chalkboard SE", cursive, sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+}
+.font-note-comic {
+  font-family: "Indie Flower", "Comic Sans MS", cursive, sans-serif !important;
+  letter-spacing: 0.03em !important;
+}
+
+/* Elite Physical Feedback Loop for interactive controls */
+button, 
+.interactive-click,
+[role="button"] {
+  transition: transform 0.12s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:active:not(:disabled),
+.interactive-click:active,
+[role="button"]:active {
+  transform: scale(0.98) !important;
+}
+
+
+
