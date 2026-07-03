@@ -201,12 +201,12 @@ export default function StudyAI({ theme, onExit }: StudyAIProps) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   
-  // Scoped User Name logic for greeting "Let's jump in, Venkatappaiah"
-  const [userName, setUserName] = useState("Venkatappaiah");
+  // Scoped User Name logic for greeting
+  const [userName, setUserName] = useState("Scholar");
 
   useEffect(() => {
     try {
-      const savedProf = localStorage.getItem("av_user_profile");
+      const savedProf = localStorage.getItem("studysphere_user") || localStorage.getItem("av_user_profile");
       if (savedProf) {
         const profile = JSON.parse(savedProf);
         if (profile && profile.name) {

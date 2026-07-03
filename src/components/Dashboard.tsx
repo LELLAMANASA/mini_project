@@ -78,10 +78,10 @@ export default function Dashboard({
   tracks,
   dailyGoalTarget,
   setDailyGoalTarget,
-  username = 'Venkatappaiah Lella',
-  xp = 120,
-  level = 2,
-  streak = 5
+  username = 'Guest Student',
+  xp = 0,
+  level = 1,
+  streak = 0
 }: DashboardProps) {
 
   // Goal config states

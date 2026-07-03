@@ -367,10 +367,10 @@ export default function ProfileView({
                       {getPlayerTitle(level)}
                     </span>
                     <h2 className="text-xl font-extrabold text-slate-800 dark:text-slate-100 font-display mt-1 leading-none">
-                      {user?.name || 'Venkatappaiah Lella'}
+                      {user?.name || 'Guest Student'}
                     </h2>
                     <p className="text-[10px] text-slate-400 font-mono mt-1.5">
-                      {user?.college || 'IIT Madras'} • {user?.branch || 'Computer Science'}
+                      {user?.college || 'StudySphere Academy'} • {user?.branch || 'General Studies'}
                     </p>
                     {user?.semester && (
                       <p className="text-[9px] text-indigo-500 dark:text-indigo-400 font-mono mt-0.5">

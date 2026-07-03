@@ -30,19 +30,19 @@ export default function AuthSystem({ onAuthSuccess, initialProfile, onBrowseAsGu
   const [emailSent, setEmailSent] = useState(false);
   
   // Login Form States
-  const [loginEmail, setLoginEmail] = useState('venkatappaiahlella54215@gmail.com');
-  const [loginPassword, setLoginPassword] = useState('password123');
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(true);
-
+  
   // Register Form States
-  const [regName, setRegName] = useState('Venkatappaiah Lella');
-  const [regEmail, setRegEmail] = useState('venkatappaiahlella54215@gmail.com');
-  const [regPassword, setRegPassword] = useState('password123');
-  const [regCollege, setRegCollege] = useState('IIT Madras');
-  const [regBranch, setRegBranch] = useState('Computer Science & Engineering');
-  const [regSemester, setRegSemester] = useState('Semester 5');
-  const [regDailyGoal, setRegDailyGoal] = useState<number>(6);
-  const [regPic, setRegPic] = useState('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150');
+  const [regName, setRegName] = useState('');
+  const [regEmail, setRegEmail] = useState('');
+  const [regPassword, setRegPassword] = useState('');
+  const [regCollege, setRegCollege] = useState('');
+  const [regBranch, setRegBranch] = useState('');
+  const [regSemester, setRegSemester] = useState('Semester 1');
+  const [regDailyGoal, setRegDailyGoal] = useState<number>(5);
+  const [regPic, setRegPic] = useState('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150');
 
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -55,18 +55,35 @@ export default function AuthSystem({ onAuthSuccess, initialProfile, onBrowseAsGu
       return;
     }
 
-    // Load existing profile or build a new high-fidelity one
+    // Try to load any existing profile from localStorage
+    try {
+      const saved = localStorage.getItem('studysphere_user');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && typeof parsed === 'object' && parsed.email === loginEmail) {
+          onAuthSuccess(parsed as UserProfile);
+          return;
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    // Otherwise, build a nice clean profile for this email
+    const username = loginEmail.split('@')[0] || 'scholar';
+    const capitalizedName = username.charAt(0).toUpperCase() + username.slice(1);
+
     const profile: UserProfile = {
-      name: regName || 'Scholar Pro',
+      name: capitalizedName,
       email: loginEmail,
-      college: regCollege || 'National Institute of Technology',
-      branch: regBranch || 'Electrical Engineering',
-      semester: regSemester || 'Semester 5',
-      profilePic: regPic || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
-      dailyStudyGoal: regDailyGoal || 5,
-      xp: 450,
-      level: 2,
-      achievements: ['ach-1', 'ach-2']
+      college: 'StudySphere Academy',
+      branch: 'General Studies',
+      semester: 'Semester 1',
+      profilePic: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150',
+      dailyStudyGoal: 5,
+      xp: 100,
+      level: 1,
+      achievements: []
     };
 
     onAuthSuccess(profile);

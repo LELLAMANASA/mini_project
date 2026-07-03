@@ -211,22 +211,17 @@ export default function App() {
     } catch (e) {
       console.error(e);
     }
-    // High-fidelity profile by default to bypass landing page wall
-    return {
-      name: 'Venkatappaiah Lella',
-      email: 'venkatappaiahlella54215@gmail.com',
-      college: 'IIT Madras',
-      branch: 'Computer Science',
-      semester: '6th Semester',
-      profilePic: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=60',
-      dailyStudyGoal: 5,
-      xp: 120,
-      level: 2,
-      achievements: ['ach-1']
-    };
+    return null;
   });
 
-  const [showAuth, setShowAuth] = useState(false); // Auth Screen toggle
+  const [showAuth, setShowAuth] = useState(() => {
+    try {
+      const saved = localStorage.getItem('studysphere_user');
+      return !saved;
+    } catch {
+      return true;
+    }
+  });
 
   // --- LIVE TIME CLOCK FEATURE ---
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
@@ -1382,20 +1377,10 @@ export default function App() {
               onClick={() => {
                 playClickSound();
                 if (!user) {
-                  setUser({
-                    name: 'Venkatappaiah Lella',
-                    email: 'venkatappaiahlella54215@gmail.com',
-                    college: 'IIT Madras',
-                    branch: 'Computer Science',
-                    semester: '6th Semester',
-                    profilePic: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=60',
-                    dailyStudyGoal: 5,
-                    xp: 120,
-                    level: 2,
-                    achievements: ['ach-1']
-                  });
+                  setShowAuth(true);
+                } else {
+                  handleTabClick('profile');
                 }
-                handleTabClick('profile');
               }}
               className="flex items-center gap-2.5 min-w-0 cursor-pointer hover:opacity-85"
             >
